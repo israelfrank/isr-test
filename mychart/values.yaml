@@ -1,0 +1,27 @@
+replicaCount: 4
+
+image:
+  name: deployment-nginx
+  repository:  israelfrank/sap 
+  tag: latest
+  nameOverride: nginx
+
+service:
+  nameSvc: service-nginx
+  type: NodePort
+  port: 5678
+  targetport: 1234
+
+resources: {}
+ 
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
