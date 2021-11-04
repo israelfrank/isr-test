@@ -6,9 +6,7 @@ pipeline {
              image DOCKER_IMG
         }
     }
-    environment {
-
-    }
+  
     stages {
         stage('Checkout master Branch') {
             steps {
