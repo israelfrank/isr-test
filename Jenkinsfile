@@ -1,21 +1,17 @@
-DOCKER_IMG = 'israelfrank/sap:latest'
+DOCKER_IMG = "jenkins/slave"
 pipeline {
-    agent {
-        docker {
-            label "docker_slave"
-             image DOCKER_IMG
+     agent {
+            docker {
+                label "DockerSlave"
+                image DOCKER_IMG
+            }
         }
-    }
-  
     stages {
         stage('Checkout master Branch') {
             steps {
                 script{
-                    checkout([$class: 'GitSCM',
-			                branches: [[name: "master"]],
-			                userRemoteConfigs: [[credentialsId: 'SAP', url: "https://github.com/israelfrank/devops-test.git"]]
-			               ])
-              
+                  
+                    sh "helm install example  mychart"
       
                 }
             }
