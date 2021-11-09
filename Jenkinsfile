@@ -11,7 +11,7 @@ pipeline {
                 }
             }
         }
-         stage('Checkout master Branch') {
+         stage('helm install') {
             steps {
                  script {
                     sh """
@@ -26,5 +26,10 @@ pipeline {
             }
         }
  
+    }
+    post {
+        failure {  
+             mail bcc: '', body: "fail: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR : Project name -> ${env.JOB_NAME}", to: "devops@sap.com";  
+         }  
     }
 }
