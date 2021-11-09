@@ -1,22 +1,30 @@
 DOCKER_IMG = "jenkins/slave"
 pipeline {
-     agent {
-            docker {
-                label "DockerSlave"
-                image DOCKER_IMG
-            }
-        }
+     agent any
     stages {
-        stage('Checkout master Branch') {
+        stage('pull image') {
             steps {
                 script{
                   
-                    sh "helm install example  mychart"
+                    sh "docker pull israelfrank/sap:latest"
       
                 }
             }
         }
-    
-       
+         stage('Checkout master Branch') {
+            steps {
+                 script {
+                    sh """
+                         export KUBECONFIG=/var/lib/jenkins/config
+                         kubectl create ns jenkins-${BUILD_NUMBER}
+                         helm install example  mychart -n jenkins-${BUILD_NUMBER}
+                         sleep 10
+                         kubectl get pods -n jenkins-${BUILD_NUMBER}
+                       """
+     
+                }
+            }
+        }
+ 
     }
 }
