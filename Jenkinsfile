@@ -29,7 +29,7 @@ pipeline {
     }
     post {
         failure {  
-             mail bcc: '', body: "fail: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR : Project name -> ${env.JOB_NAME}", to: "devops@sap.com";  
+             emailext  body: "fail: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER}", mimeType: 'text/html', subject: "fail", to: "devops@sap.com";  
          }  
     }
 }
