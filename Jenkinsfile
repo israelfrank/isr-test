@@ -6,7 +6,6 @@ def lastCommit, seconedLastCommit
 def command = []
 def chartListProduct = []
 def chartListWebide = []
-def json = new JsonSlurper().parseText("json.json")
 
 
 pipeline {
@@ -54,13 +53,16 @@ pipeline {
                                 clusterConfiguration = readYaml  file: chartProduct
                                 clusterConfiguration.each { chartName, chartData ->
                                 
-                                // chartListProduct.add(chartName)
-                                if (!chartListWebide.contains(chartName)) { 
-                                  json.details.each {it.get(0).put('ws-snapshot-controller123', "") }
-                                
+                                 chartListProduct.add(chartName)
                                 }
+
+                                for(def x=0; x<chartListProduct.size(); x++){
+                                     
+                                     if (!chartListWebide.contains(chartListProduct[x])) {
+                                         print "code" 
+                            
                                 }
-        
+                                } 
                                 print chartListWebide
                                            
                     }
