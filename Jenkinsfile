@@ -6,6 +6,8 @@ def lastCommit, seconedLastCommit
 def command = []
 def chartListProduct = []
 def chartListWebide = []
+def json = new JsonSlurper().parseText("json.json")
+
 
 pipeline {
     agent any
@@ -54,10 +56,8 @@ pipeline {
                                 
                                 // chartListProduct.add(chartName)
                                 if (!chartListWebide.contains(chartName)) { 
-                                  sh """
-                                    #!/bin/bash
-                                    jq '. += {$chartName: "{}"}' json.json 
-                                  """
+                                  json.details.each {it.get(0).put('ws-snapshot-controller123', "") }
+                                
                                 }
                                 }
         
