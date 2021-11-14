@@ -1,0 +1,21 @@
+repo-cache:
+  version: 1.20210801.112704
+  helm3: true
+  pullSecret: true
+  dockerOverrides:
+  - pathExpression: nginxRedirector.imageParts.registry
+  - pathExpression: initNexus.imageParts.registry
+  - pathExpression: nexus-repository-manager.image.repository
+    urlSuffix: sonatype/nexus3
+  app:
+    namespace: repo-cache
+ws-snapshot-controller:
+  version: 1.20211005.114035
+  helm3: true
+  pullSecret: true
+  dockerOverrides:
+  - pathExpression: imageParts.registry
+  - pathExpression: snapshotter.image.registry
+  - pathExpression: policy.imageParts.registry
+  - pathExpression: config.template.image.registry
+  - pathExpression: delete_restores_policy.image.registry
