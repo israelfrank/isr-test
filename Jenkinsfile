@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 def chartsWeb = "json.json"  
 def chartProduct = "yaml.yaml"
 def lastCommit, seconedLastCommit
@@ -52,7 +54,9 @@ pipeline {
                                 
                                 // chartListProduct.add(chartName)
                                 if (!chartListWebide.contains(chartName)) { 
-                                  print "done"
+                                  sh """
+                                    echo "$(jq '.$chartName':{}' json.json)" > json.json
+                                  """
                                 }
                                 }
         
