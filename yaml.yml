@@ -10,7 +10,7 @@ repo-cache:
   app:
     namespace: repo-cache
 ws-snapshot-controller:
-  version: 1.20211005.114035
+  version: 1.20211005.1140
   helm3: true
   pullSecret: true
   dockerOverrides:
