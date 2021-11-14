@@ -51,7 +51,7 @@ pipeline {
                                 clusterConfiguration.each { chartName, chartData ->
                                 
                                 // chartListProduct.add(chartName)
-                                if chartListWebide.contains(chartName) { 
+                                if (chartListWebide.contains(chartName)) { 
                                   print "done"
                                 }
                                 }
