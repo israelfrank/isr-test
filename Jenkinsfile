@@ -1,5 +1,3 @@
-DOCKER_IMG = 'docker.wdf.sap.corp:50000/com.sap.devx.wing/webide-docker-builder:1.11-20210712134948_3089d3630a318870cbc98802fea35af86a855f37'
-
 def chartsWeb = "json.json"  
 def chartProduct = "yaml.yaml"
 def lastCommit, seconedLastCommit
@@ -53,8 +51,9 @@ pipeline {
                                 clusterConfiguration.each { chartName, chartData ->
                                 
                                 // chartListProduct.add(chartName)
-                                if chartListWebide.contains(chartName)  
+                                if chartListWebide.contains(chartName) { 
                                   print "done"
+                                }
                                 }
         
                                 print chartListWebide
