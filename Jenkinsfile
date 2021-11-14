@@ -55,7 +55,7 @@ pipeline {
                                 // chartListProduct.add(chartName)
                                 if (!chartListWebide.contains(chartName)) { 
                                   sh """
-                                    jq .$chartName:{} json.json > json.json
+                                    jq '. += {$chartName: "{}"}' json.json 
                                   """
                                 }
                                 }
