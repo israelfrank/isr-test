@@ -19,3 +19,4 @@ ws-snapshot-controller:
   - pathExpression: policy.imageParts.registry
   - pathExpression: config.template.image.registry
   - pathExpression: delete_restores_policy.image.registry
+ws-snapshot-controller123:
